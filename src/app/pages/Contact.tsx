@@ -57,10 +57,10 @@ export default function Contact() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#F8FAFC] to-[#CBD5E1] bg-clip-text text-transparent">
-            Get in Touch
+            Contactanos
           </h1>
           <p className="text-xl text-[#CBD5E1] max-w-3xl mx-auto">
-            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            ¿Tenés preguntas? Nos encantaría saber de vos. Envianos un mensaje y responderemos lo antes posible.
           </p>
         </div>
 
@@ -68,11 +68,11 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <div className="bg-[#1E293B] rounded-2xl p-8 border border-[#334155]">
-              <h2 className="text-2xl font-semibold mb-6 text-[#F8FAFC]">Send us a Message</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-[#F8FAFC]">Envianos un Mensaje</h2>
 
               {submitSuccess && (
                 <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400">
-                  Thank you! Your message has been sent successfully. We'll get back to you soon.
+                  ¡Gracias! Tu mensaje fue enviado exitosamente. Nos comunicaremos con vos pronto.
                 </div>
               )}
 
@@ -80,7 +80,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="name" className="text-[#CBD5E1] mb-2 block">
-                      Full Name *
+                      Nombre Completo *
                     </Label>
                     <Input
                       id="name"
@@ -90,13 +90,13 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       className="bg-[#0F172A] border-[#334155] text-[#F8FAFC] focus:border-[#8B5CF6]"
-                      placeholder="John Doe"
+                      placeholder="Juan Pérez"
                     />
                   </div>
 
                   <div>
                     <Label htmlFor="email" className="text-[#CBD5E1] mb-2 block">
-                      Email Address *
+                      Correo Electrónico *
                     </Label>
                     <Input
                       id="email"
@@ -106,14 +106,14 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       className="bg-[#0F172A] border-[#334155] text-[#F8FAFC] focus:border-[#8B5CF6]"
-                      placeholder="john@example.com"
+                      placeholder="juan@ejemplo.com"
                     />
                   </div>
                 </div>
 
                 <div>
                   <Label htmlFor="phone" className="text-[#CBD5E1] mb-2 block">
-                    Phone Number
+                    Teléfono
                   </Label>
                   <Input
                     id="phone"
@@ -122,13 +122,13 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="bg-[#0F172A] border-[#334155] text-[#F8FAFC] focus:border-[#8B5CF6]"
-                    placeholder="+1 (555) 123-4567"
+                    placeholder="+598 99 123 456"
                   />
                 </div>
 
                 <div>
                   <Label htmlFor="message" className="text-[#CBD5E1] mb-2 block">
-                    Message *
+                    Mensaje *
                   </Label>
                   <Textarea
                     id="message"
@@ -138,7 +138,7 @@ export default function Contact() {
                     onChange={handleChange}
                     rows={6}
                     className="bg-[#0F172A] border-[#334155] text-[#F8FAFC] focus:border-[#8B5CF6] resize-none"
-                    placeholder="Tell us about what you're looking for..."
+                    placeholder="Contanos qué estás buscando..."
                   />
                 </div>
 
@@ -148,7 +148,7 @@ export default function Contact() {
                     disabled={isSubmitting}
                     className="flex-1 bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white py-6 text-lg disabled:opacity-50"
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
                   </Button>
 
                   <Button
@@ -168,7 +168,7 @@ export default function Contact() {
           <div className="lg:col-span-1 space-y-6">
             {/* Contact Details */}
             <div className="bg-[#1E293B] rounded-2xl p-8 border border-[#334155]">
-              <h3 className="text-xl font-semibold mb-6 text-[#F8FAFC]">Contact Information</h3>
+              <h3 className="text-xl font-semibold mb-6 text-[#F8FAFC]">Información de Contacto</h3>
 
               <div className="space-y-6">
                 <a
@@ -179,7 +179,7 @@ export default function Contact() {
                     <Phone className="w-6 h-6 text-[#8B5CF6]" />
                   </div>
                   <div>
-                    <div className="text-sm text-[#94A3B8] mb-1">Phone</div>
+                    <div className="text-sm text-[#94A3B8] mb-1">Teléfono</div>
                     <div className="text-[#F8FAFC] group-hover:text-[#8B5CF6] transition-colors">
                       {siteConfig.contact.phone}
                     </div>
@@ -194,7 +194,7 @@ export default function Contact() {
                     <Mail className="w-6 h-6 text-[#8B5CF6]" />
                   </div>
                   <div>
-                    <div className="text-sm text-[#94A3B8] mb-1">Email</div>
+                    <div className="text-sm text-[#94A3B8] mb-1">Correo</div>
                     <div className="text-[#F8FAFC] group-hover:text-[#8B5CF6] transition-colors break-all">
                       {siteConfig.contact.email}
                     </div>
@@ -206,7 +206,7 @@ export default function Contact() {
                     <MapPin className="w-6 h-6 text-[#8B5CF6]" />
                   </div>
                   <div>
-                    <div className="text-sm text-[#94A3B8] mb-1">Address</div>
+                    <div className="text-sm text-[#94A3B8] mb-1">Dirección</div>
                     <div className="text-[#F8FAFC]">{siteConfig.contact.address}</div>
                   </div>
                 </div>
@@ -216,7 +216,7 @@ export default function Contact() {
                     <Clock className="w-6 h-6 text-[#8B5CF6]" />
                   </div>
                   <div>
-                    <div className="text-sm text-[#94A3B8] mb-1">Hours</div>
+                    <div className="text-sm text-[#94A3B8] mb-1">Horarios</div>
                     <div className="text-[#F8FAFC]">{siteConfig.contact.hours}</div>
                   </div>
                 </div>
@@ -225,16 +225,16 @@ export default function Contact() {
 
             {/* Quick WhatsApp */}
             <div className="bg-gradient-to-r from-[#25D366]/10 to-[#20BA5A]/10 rounded-2xl p-8 border border-[#25D366]/30">
-              <h3 className="text-xl font-semibold mb-4 text-[#F8FAFC]">Instant Response</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#F8FAFC]">Respuesta Instantánea</h3>
               <p className="text-[#CBD5E1] mb-6">
-                Need immediate assistance? Chat with us on WhatsApp for instant support.
+                ¿Necesitás ayuda inmediata? Chateá con nosotros por WhatsApp para asistencia al instante.
               </p>
               <Button
                 onClick={handleWhatsAppClick}
                 className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white py-4"
               >
                 <MessageCircle className="mr-2 w-5 h-5" />
-                Chat on WhatsApp
+                Chatear por WhatsApp
               </Button>
             </div>
           </div>

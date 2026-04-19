@@ -12,24 +12,24 @@ export default function NotFound() {
           </div>
         </div>
 
-        <h1 className="text-4xl font-bold mb-4 text-[#F8FAFC]">Page Not Found</h1>
+        <h1 className="text-4xl font-bold mb-4 text-[#F8FAFC]">Página No Encontrada</h1>
 
         <p className="text-xl text-[#94A3B8] mb-8 max-w-md mx-auto">
-          Oops! The page you're looking for doesn't exist. It might have been moved or deleted.
+          ¡Ups! La página que estás buscando no existe. Puede haber sido movida o eliminada.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link to="/">
             <Button className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white px-8 py-6 text-lg">
               <Home className="mr-2 w-5 h-5" />
-              Go Home
+              Ir al Inicio
             </Button>
           </Link>
 
           <Link to="/properties">
             <Button className="bg-[#334155] hover:bg-[#475569] text-white px-8 py-6 text-lg">
               <ArrowLeft className="mr-2 w-5 h-5" />
-              Browse Properties
+              Explorar Propiedades
             </Button>
           </Link>
         </div>

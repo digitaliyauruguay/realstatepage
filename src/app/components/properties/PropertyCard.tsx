@@ -37,10 +37,10 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         />
         <div className="absolute top-4 left-4 flex gap-2">
           <Badge className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] text-white border-0">
-            {property.operation === "buy" ? "For Sale" : "For Rent"}
+            {property.operation === "buy" ? "En Venta" : "En Alquiler"}
           </Badge>
           {property.featured && (
-            <Badge className="bg-[#06B6D4] text-white border-0">Featured</Badge>
+            <Badge className="bg-[#06B6D4] text-white border-0">Destacada</Badge>
           )}
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -100,7 +100,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         <div className="flex gap-2">
           <Link to={`/property/${property.id}`} className="flex-1">
             <Button className="w-full bg-[#334155] hover:bg-[#475569] text-white">
-              View Details
+              Ver Detalles
             </Button>
           </Link>
           <Button

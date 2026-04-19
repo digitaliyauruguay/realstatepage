@@ -35,12 +35,12 @@ export default function About() {
         {/* Mission */}
         <div className="bg-gradient-to-r from-[#8B5CF6]/10 to-[#3B82F6]/10 rounded-3xl p-12 mb-20 border border-[#8B5CF6]/20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">Our Mission</h2>
+            <h2 className="text-3xl font-bold mb-6 text-[#F8FAFC]">Nuestra Misión</h2>
             <p className="text-lg text-[#CBD5E1] leading-relaxed">
-              We believe everyone deserves to find their perfect property without the stress and complexity
-              that often comes with real estate transactions. Our mission is to provide a seamless, transparent,
-              and rewarding experience for buyers, sellers, and renters. We combine cutting-edge technology
-              with personalized service to help you make the best decision for your future.
+              Creemos que todos merecen encontrar su propiedad perfecta sin el estrés y la complejidad
+              que a menudo acompaña a las transacciones inmobiliarias. Nuestra misión es brindar una experiencia
+              fluida, transparente y gratificante para compradores, vendedores e inquilinos. Combinamos tecnología
+              de vanguardia con servicio personalizado para ayudarte a tomar la mejor decisión para tu futuro.
             </p>
           </div>
         </div>
@@ -49,10 +49,10 @@ export default function About() {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#F8FAFC] to-[#CBD5E1] bg-clip-text text-transparent">
-              Meet Our Team
+              Conocé a Nuestro Equipo
             </h2>
             <p className="text-[#94A3B8] text-lg">
-              Passionate professionals dedicated to your success
+              Profesionales apasionados dedicados a tu éxito
             </p>
           </div>
 
@@ -83,32 +83,32 @@ export default function About() {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#F8FAFC] to-[#CBD5E1] bg-clip-text text-transparent">
-              Our Values
+              Nuestros Valores
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-[#1E293B] rounded-2xl p-8 border border-[#334155]">
               <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold mb-3 text-[#F8FAFC]">Transparency</h3>
+              <h3 className="text-xl font-semibold mb-3 text-[#F8FAFC]">Transparencia</h3>
               <p className="text-[#94A3B8]">
-                We believe in complete honesty and clarity in every transaction. No hidden fees, no surprises.
+                Creemos en la completa honestidad y claridad en cada transacción. Sin cargos ocultos, sin sorpresas.
               </p>
             </div>
 
             <div className="bg-[#1E293B] rounded-2xl p-8 border border-[#334155]">
               <div className="text-5xl mb-4">🤝</div>
-              <h3 className="text-xl font-semibold mb-3 text-[#F8FAFC]">Integrity</h3>
+              <h3 className="text-xl font-semibold mb-3 text-[#F8FAFC]">Integridad</h3>
               <p className="text-[#94A3B8]">
-                We do what's right for our clients, even when it's not the easiest path for us.
+                Hacemos lo correcto para nuestros clientes, incluso cuando no es el camino más fácil para nosotros.
               </p>
             </div>
 
             <div className="bg-[#1E293B] rounded-2xl p-8 border border-[#334155]">
               <div className="text-5xl mb-4">⚡</div>
-              <h3 className="text-xl font-semibold mb-3 text-[#F8FAFC]">Excellence</h3>
+              <h3 className="text-xl font-semibold mb-3 text-[#F8FAFC]">Excelencia</h3>
               <p className="text-[#94A3B8]">
-                We strive for excellence in every detail, from property selection to customer service.
+                Nos esforzamos por la excelencia en cada detalle, desde la selección de propiedades hasta el servicio al cliente.
               </p>
             </div>
           </div>
@@ -117,21 +117,21 @@ export default function About() {
         {/* CTA */}
         <div className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] rounded-3xl p-12 text-center">
           <h2 className="text-3xl font-bold mb-4 text-white">
-            Ready to Work With Us?
+            ¿Listo para Trabajar con Nosotros?
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Let's find your perfect property together
+            Encontremos tu propiedad perfecta juntos
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/properties">
               <Button className="bg-white text-[#8B5CF6] hover:bg-white/90 px-8 py-6 text-lg rounded-xl">
-                Browse Properties
+                Explorar Propiedades
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
             <Link to="/contact">
               <Button className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-6 text-lg rounded-xl border border-white/30">
-                Contact Us
+                Contactanos
               </Button>
             </Link>
           </div>

@@ -1,9 +1,39 @@
-import { Link } from "react-router";
+import { useCallback } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
 import { siteConfig } from "../../../config/siteConfig";
 
+const pathSectionMap: Record<string, string> = {
+  "/": "inicio",
+  "/properties": "propiedades",
+  "/about": "sobre-nosotros",
+  "/testimonials": "testimonios",
+  "/faq": "preguntas-frecuentes",
+  "/contact": "contacto",
+};
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = useCallback((path: string) => {
+    const sectionId = pathSectionMap[path];
+    if (sectionId) {
+      if (location.pathname === "/") {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+      }
+      navigate("/");
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [location.pathname, navigate]);
 
   return (
     <footer className="bg-[#0F172A] border-t border-[#1E293B]">
@@ -60,16 +90,16 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-[#F8FAFC]">Quick Links</h3>
+            <h3 className="font-semibold mb-4 text-[#F8FAFC]">Enlaces Rápidos</h3>
             <ul className="space-y-2">
               {siteConfig.navigation.main.map((item) => (
                 <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    className="text-[#94A3B8] hover:text-[#8B5CF6] transition-colors text-sm"
+                  <button
+                    onClick={() => handleNavClick(item.path)}
+                    className="text-[#94A3B8] hover:text-[#8B5CF6] transition-colors text-sm cursor-pointer bg-transparent border-0 p-0"
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -81,12 +111,11 @@ export default function Footer() {
             <ul className="space-y-2">
               {siteConfig.navigation.footer.map((item) => (
                 <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    className="text-[#94A3B8] hover:text-[#8B5CF6] transition-colors text-sm"
+                  <span
+                    className="text-[#94A3B8] text-sm"
                   >
                     {item.name}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -94,7 +123,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold mb-4 text-[#F8FAFC]">Contact</h3>
+            <h3 className="font-semibold mb-4 text-[#F8FAFC]">Contacto</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-[#94A3B8]">
                 <Phone className="w-5 h-5 flex-shrink-0 mt-0.5 text-[#8B5CF6]" />
@@ -114,7 +143,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-[#1E293B] text-center text-sm text-[#94A3B8]">
           <p>
-            © {currentYear} {siteConfig.brand.name}. All rights reserved.
+            © {currentYear} {siteConfig.brand.name}. Todos los derechos reservados.
           </p>
         </div>
       </div>

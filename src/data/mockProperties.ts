@@ -209,17 +209,17 @@ export const mockProperties: Property[] = [
 // Filter options for UI
 export const filterOptions = {
   types: [
-    { value: "all", label: "All Types" },
-    { value: "house", label: "House" },
-    { value: "apartment", label: "Apartment" },
+    { value: "all", label: "Todos los Tipos" },
+    { value: "house", label: "Casa" },
+    { value: "apartment", label: "Departamento" },
   ],
   operations: [
-    { value: "all", label: "All" },
-    { value: "buy", label: "Buy" },
-    { value: "rent", label: "Rent" },
+    { value: "all", label: "Todos" },
+    { value: "buy", label: "Comprar" },
+    { value: "rent", label: "Alquilar" },
   ],
   bedrooms: [
-    { value: "all", label: "Any" },
+    { value: "all", label: "Cualquiera" },
     { value: "1", label: "1+" },
     { value: "2", label: "2+" },
     { value: "3", label: "3+" },
@@ -228,16 +228,16 @@ export const filterOptions = {
   ],
   priceRanges: {
     buy: [
-      { value: "all", label: "Any Price" },
-      { value: "0-500000", label: "Under $500K" },
+      { value: "all", label: "Cualquier Precio" },
+      { value: "0-500000", label: "Menos de $500K" },
       { value: "500000-1000000", label: "$500K - $1M" },
       { value: "1000000-2000000", label: "$1M - $2M" },
       { value: "2000000-5000000", label: "$2M - $5M" },
       { value: "5000000-99999999", label: "$5M+" },
     ],
     rent: [
-      { value: "all", label: "Any Price" },
-      { value: "0-3000", label: "Under $3K" },
+      { value: "all", label: "Cualquier Precio" },
+      { value: "0-3000", label: "Menos de $3K" },
       { value: "3000-5000", label: "$3K - $5K" },
       { value: "5000-7000", label: "$5K - $7K" },
       { value: "7000-10000", label: "$7K - $10K" },

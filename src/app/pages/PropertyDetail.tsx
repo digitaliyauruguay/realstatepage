@@ -16,10 +16,10 @@ export default function PropertyDetail() {
     return (
       <div className="min-h-screen pt-32 pb-20 bg-[#020617] flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4 text-[#F8FAFC]">Property not found</h2>
+          <h2 className="text-3xl font-bold mb-4 text-[#F8FAFC]">Propiedad no encontrada</h2>
           <Link to="/properties">
             <Button className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6]">
-              Back to Properties
+              Volver a Propiedades
             </Button>
           </Link>
         </div>
@@ -63,7 +63,7 @@ export default function PropertyDetail() {
           className="flex items-center gap-2 text-[#94A3B8] hover:text-[#8B5CF6] mb-8 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
-          Back to Properties
+          Volver a Propiedades
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -104,10 +104,10 @@ export default function PropertyDetail() {
                 {/* Badges */}
                 <div className="absolute top-4 left-4 flex gap-2">
                   <Badge className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] text-white border-0">
-                    {property.operation === "buy" ? "For Sale" : "For Rent"}
+                    {property.operation === "buy" ? "En Venta" : "En Alquiler"}
                   </Badge>
                   {property.featured && (
-                    <Badge className="bg-[#06B6D4] text-white border-0">Featured</Badge>
+                    <Badge className="bg-[#06B6D4] text-white border-0">Destacada</Badge>
                   )}
                 </div>
               </div>
@@ -148,43 +148,43 @@ export default function PropertyDetail() {
               <div className="flex items-center gap-6 mb-8 pb-8 border-b border-[#334155]">
                 <div className="flex items-center gap-2">
                   <Bed className="w-5 h-5 text-[#8B5CF6]" />
-                  <span className="text-[#CBD5E1]">{property.bedrooms} Beds</span>
+                  <span className="text-[#CBD5E1]">{property.bedrooms} Dorm.</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Bath className="w-5 h-5 text-[#8B5CF6]" />
-                  <span className="text-[#CBD5E1]">{property.bathrooms} Baths</span>
+                  <span className="text-[#CBD5E1]">{property.bathrooms} Baños</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Square className="w-5 h-5 text-[#8B5CF6]" />
-                  <span className="text-[#CBD5E1]">{property.area.toLocaleString()} sqft</span>
+                  <span className="text-[#CBD5E1]">{property.area.toLocaleString()} m²</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Car className="w-5 h-5 text-[#8B5CF6]" />
-                  <span className="text-[#CBD5E1]">{property.parking} Parking</span>
+                  <span className="text-[#CBD5E1]">{property.parking} Cochera</span>
                 </div>
               </div>
 
               <div className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4 text-[#F8FAFC]">Description</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#F8FAFC]">Descripción</h2>
                 <p className="text-[#CBD5E1] leading-relaxed">{property.description}</p>
               </div>
 
               <div className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4 text-[#F8FAFC]">Property Features</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#F8FAFC]">Características de la Propiedad</h2>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-[#8B5CF6]" />
-                    <span className="text-[#CBD5E1]">Built in {property.yearBuilt}</span>
+                    <span className="text-[#CBD5E1]">Construida en {property.yearBuilt}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-5 h-5 text-[#8B5CF6] flex items-center justify-center">🏠</span>
-                    <span className="text-[#CBD5E1] capitalize">{property.type}</span>
+                    <span className="text-[#CBD5E1] capitalize">{property.type === 'house' ? 'Casa' : 'Departamento'}</span>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h2 className="text-2xl font-semibold mb-4 text-[#F8FAFC]">Tags</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-[#F8FAFC]">Etiquetas</h2>
                 <div className="flex flex-wrap gap-2">
                   {property.tags.map((tag) => (
                     <span
@@ -200,11 +200,11 @@ export default function PropertyDetail() {
 
             {/* Map Placeholder */}
             <div className="bg-[#1E293B] rounded-2xl p-8 border border-[#334155]">
-              <h2 className="text-2xl font-semibold mb-4 text-[#F8FAFC]">Location</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-[#F8FAFC]">Ubicación</h2>
               <div className="bg-[#0F172A] rounded-xl h-64 flex items-center justify-center border border-[#334155]">
                 <div className="text-center">
                   <MapPin className="w-12 h-12 text-[#8B5CF6] mx-auto mb-2" />
-                  <p className="text-[#94A3B8]">Map integration placeholder</p>
+                  <p className="text-[#94A3B8]">Integración de mapa (placeholder)</p>
                   <p className="text-sm text-[#64748B]">{property.location}</p>
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function PropertyDetail() {
           <div className="lg:col-span-1">
             <div className="bg-[#1E293B] rounded-2xl p-8 border border-[#334155] sticky top-24">
               <div className="mb-8">
-                <div className="text-sm text-[#94A3B8] mb-2">Price</div>
+                <div className="text-sm text-[#94A3B8] mb-2">Precio</div>
                 <div className="text-4xl font-bold bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] bg-clip-text text-transparent">
                   {formatPrice(property.price, property.operation)}
                 </div>
@@ -227,19 +227,19 @@ export default function PropertyDetail() {
                   className="w-full bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white py-6 text-lg"
                 >
                   <MessageCircle className="mr-2 w-5 h-5" />
-                  WhatsApp Us
+                  Escribinos por WhatsApp
                 </Button>
 
                 <Button
                   onClick={handleScheduleVisit}
                   className="w-full bg-[#334155] hover:bg-[#475569] text-white py-6 text-lg"
                 >
-                  Schedule Visit
+                  Programar Visita
                 </Button>
               </div>
 
               <div className="pt-8 border-t border-[#334155]">
-                <h3 className="font-semibold mb-4 text-[#F8FAFC]">Contact Information</h3>
+                <h3 className="font-semibold mb-4 text-[#F8FAFC]">Información de Contacto</h3>
                 <div className="space-y-3">
                   <a
                     href={`tel:${siteConfig.contact.phone}`}

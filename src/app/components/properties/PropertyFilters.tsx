@@ -19,12 +19,12 @@ export default function PropertyFilters({ filters, onFilterChange }: PropertyFil
 
   return (
     <div className="bg-[#1E293B] p-6 rounded-2xl border border-[#334155] sticky top-24">
-      <h3 className="text-xl font-semibold mb-6 text-[#F8FAFC]">Filters</h3>
+      <h3 className="text-xl font-semibold mb-6 text-[#F8FAFC]">Filtros</h3>
 
       <div className="space-y-6">
         {/* Operation */}
         <div>
-          <Label className="text-[#CBD5E1] mb-2 block">Type</Label>
+          <Label className="text-[#CBD5E1] mb-2 block">Tipo</Label>
           <Select value={filters.operation} onValueChange={(value) => onFilterChange("operation", value)}>
             <SelectTrigger className="bg-[#0F172A] border-[#334155] text-[#F8FAFC]">
               <SelectValue />
@@ -41,7 +41,7 @@ export default function PropertyFilters({ filters, onFilterChange }: PropertyFil
 
         {/* Property Type */}
         <div>
-          <Label className="text-[#CBD5E1] mb-2 block">Property Type</Label>
+          <Label className="text-[#CBD5E1] mb-2 block">Tipo de Propiedad</Label>
           <Select value={filters.type} onValueChange={(value) => onFilterChange("type", value)}>
             <SelectTrigger className="bg-[#0F172A] border-[#334155] text-[#F8FAFC]">
               <SelectValue />
@@ -58,7 +58,7 @@ export default function PropertyFilters({ filters, onFilterChange }: PropertyFil
 
         {/* Bedrooms */}
         <div>
-          <Label className="text-[#CBD5E1] mb-2 block">Bedrooms</Label>
+          <Label className="text-[#CBD5E1] mb-2 block">Dormitorios</Label>
           <Select value={filters.bedrooms} onValueChange={(value) => onFilterChange("bedrooms", value)}>
             <SelectTrigger className="bg-[#0F172A] border-[#334155] text-[#F8FAFC]">
               <SelectValue />
@@ -75,7 +75,7 @@ export default function PropertyFilters({ filters, onFilterChange }: PropertyFil
 
         {/* Price Range */}
         <div>
-          <Label className="text-[#CBD5E1] mb-2 block">Price Range</Label>
+          <Label className="text-[#CBD5E1] mb-2 block">Rango de Precio</Label>
           <Select value={filters.priceRange} onValueChange={(value) => onFilterChange("priceRange", value)}>
             <SelectTrigger className="bg-[#0F172A] border-[#334155] text-[#F8FAFC]">
               <SelectValue />
@@ -100,7 +100,7 @@ export default function PropertyFilters({ filters, onFilterChange }: PropertyFil
           }}
           className="w-full py-2 px-4 bg-[#0F172A] hover:bg-[#334155] text-[#CBD5E1] rounded-lg transition-colors text-sm"
         >
-          Reset Filters
+          Restablecer Filtros
         </button>
       </div>
     </div>
