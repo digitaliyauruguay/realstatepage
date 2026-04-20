@@ -294,7 +294,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-[#1E293B] transition-colors cursor-pointer"
+            className="md:hidden p-3 rounded-lg hover:bg-[#1E293B] transition-colors cursor-pointer text-white"
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -357,6 +357,15 @@ export default function Navbar() {
               <MessageCircle className="mr-2 w-4 h-4" />
               Contactar Ahora
             </Button>
+            
+            {/* Admin Access Button - Mobile */}
+            <button
+              onClick={() => window.location.href = '/admin'}
+              className="w-full bg-[#1E293B] border border-[#334155] hover:border-[#8B5CF6]/50 rounded-lg px-4 py-3 text-[#94A3B8] hover:text-[#8B5CF6] transition-all flex items-center justify-center gap-2"
+            >
+              <Settings className="w-4 h-4" />
+              Acceso Administrativo
+            </button>
           </div>
         </div>
       )}
