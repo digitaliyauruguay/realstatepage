@@ -222,8 +222,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="/" onClick={handleLogoClick} className="flex items-center gap-3 group cursor-pointer">
-            <div className="text-4xl group-hover:scale-110 transition-transform">
+            <div className="text-3xl sm:text-4xl group-hover:scale-110 transition-transform">
               {siteConfig.brand.logo}
+            </div>
+            <div className="block sm:hidden">
+              <div className="text-lg font-bold bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+                {siteConfig.brand.name}
+              </div>
             </div>
             <div className="hidden sm:block">
               <div className="text-xl font-bold bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] bg-clip-text text-transparent group-hover:scale-105 transition-transform">
@@ -292,25 +297,16 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <button
-              onClick={() => window.location.href = '/admin'}
-              className="p-2 rounded-lg hover:bg-[#1E293B] transition-colors cursor-pointer text-white"
-              title="Acceso Administrativo"
-            >
-              <Settings className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-3 rounded-lg hover:bg-[#1E293B] transition-colors cursor-pointer text-white"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-3 rounded-lg hover:bg-[#1E293B] transition-colors cursor-pointer text-white"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
       </div>
 
@@ -366,12 +362,21 @@ export default function Navbar() {
               <MessageCircle className="mr-2 w-4 h-4" />
               Contactar Ahora
             </Button>
+            
+            {/* Admin Access Button - Mobile */}
+            <button
+              onClick={() => window.location.href = '/admin'}
+              className="w-full bg-[#1E293B] border border-[#334155] hover:border-[#8B5CF6]/50 rounded-lg px-4 py-3 text-[#94A3B8] hover:text-[#8B5CF6] transition-all flex items-center justify-center gap-2"
+            >
+              <Settings className="w-4 h-4" />
+              Acceso Administrativo
+            </button>
           </div>
         </div>
       )}
       
       {/* Admin Access Link */}
-      <div className="fixed bottom-4 right-4 z-40">
+      <div className="fixed bottom-4 right-4 z-40 md:block hidden">
         <button
           onClick={() => window.location.href = '/admin'}
           className="bg-[#1E293B] border border-[#334155] hover:border-[#8B5CF6]/50 rounded-lg p-2 text-[#94A3B8] hover:text-[#8B5CF6] transition-all group"
