@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router";
 import { Search, ArrowRight, Star, MessageCircle, Mail, Phone, MapPin, Clock } from "lucide-react";
 import { siteConfig } from "../../config/siteConfig";
 import { mockProperties } from "../../data/mockProperties";
@@ -11,6 +11,7 @@ import { Label } from "../components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
 export default function Home() {
+  const location = useLocation();
   const featuredProperties = mockProperties.filter((p) => p.featured).slice(0, 3);
 
   const [formData, setFormData] = useState({
@@ -21,6 +22,25 @@ export default function Home() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // Handle direct navigation to specific sections
+  useEffect(() => {
+    const pathSectionMap: Record<string, string> = {
+      "/testimonials": "testimonios",
+      "/faq": "preguntas-frecuentes",
+    };
+
+    const sectionId = pathSectionMap[location.pathname];
+    if (sectionId) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location.pathname]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -67,7 +87,7 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
           <div className="mb-6">
-            <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#8B5CF6]/20 to-[#3B82F6]/20 border border-[#8B5CF6]/30 rounded-full text-[#8B5CF6] text-sm font-medium">
+            <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#8B5CF6]/20 to-[#3B82F6]/20 border border-[#8B5CF6]/30 rounded-full text-white text-sm font-medium">
               Plataforma Inmobiliaria Premium
             </span>
           </div>
@@ -80,7 +100,7 @@ export default function Home() {
             {siteConfig.hero.subheadline}
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Button */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Link to="/properties">
               <Button className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white px-8 py-6 text-lg rounded-xl shadow-2xl shadow-[#8B5CF6]/30 hover:shadow-[#8B5CF6]/50 transition-all">
@@ -88,13 +108,6 @@ export default function Home() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Button
-              onClick={handleWhatsAppClick}
-              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-6 text-lg rounded-xl border border-white/20 transition-all"
-            >
-              <MessageCircle className="mr-2 w-5 h-5" />
-              {siteConfig.hero.ctaSecondary}
-            </Button>
           </div>
 
           {/* Search Bar */}
@@ -146,15 +159,15 @@ export default function Home() {
           <div className="flex items-center justify-between mb-12">
             <div>
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#F8FAFC] to-[#CBD5E1] bg-clip-text text-transparent">
-                Propiedades
+                Propiedades Destacadas
               </h2>
               <p className="text-[#94A3B8] text-lg">
-                Listados premium seleccionados especialmente para vos
+                Bosque Día, propiedades destacadas
               </p>
             </div>
             <Link to="/properties">
-              <Button className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white">
-                Ver Todas
+              <Button className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white px-8 py-3 text-lg">
+                Ver Todas las Propiedades
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>

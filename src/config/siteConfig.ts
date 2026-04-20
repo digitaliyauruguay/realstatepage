@@ -168,7 +168,14 @@ export const siteConfig = {
   navigation: {
     main: [
       { name: "Inicio", path: "/" },
-      { name: "Propiedades", path: "/properties" },
+      { 
+        name: "Propiedades", 
+        path: "/properties",
+        submenu: [
+          { name: "Destacadas", path: "/" },
+          { name: "Ver Todas", path: "/properties" }
+        ]
+      },
       { name: "Sobre Nosotros", path: "/about" },
       { name: "Testimonios", path: "/testimonials" },
       { name: "Preguntas Frecuentes", path: "/faq" },

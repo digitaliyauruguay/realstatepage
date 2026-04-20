@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, MessageCircle, ChevronDown } from "lucide-react";
 import { siteConfig } from "../../../config/siteConfig";
 import { Button } from "../ui/button";
 
@@ -26,9 +26,11 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const isScrollingRef = useRef(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,7 +78,20 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setDropdownOpen(null);
   }, [location]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleWhatsAppClick = () => {
     window.open(`https://wa.me/${siteConfig.contact.whatsapp}`, "_blank");
@@ -84,20 +99,102 @@ export default function Navbar() {
 
   const handleNavClick = useCallback((path: string) => {
     const sectionId = pathSectionMap[path];
+    console.log('handleNavClick:', { path, sectionId, currentPath: location.pathname });
+    
     if (location.pathname === "/" && sectionId) {
+      // For all sections, scroll to position first, then animate
       const el = document.getElementById(sectionId);
       if (el) {
-        isScrollingRef.current = true;
-        setActiveSection(sectionId);
         el.scrollIntoView({ behavior: "smooth" });
         setTimeout(() => {
-          isScrollingRef.current = false;
-        }, 1000);
-        return;
+          isScrollingRef.current = true;
+          setActiveSection(sectionId);
+          window.dispatchEvent(new CustomEvent('pageTransition'));
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+              isScrollingRef.current = false;
+            }, 1000);
+          }, 100);
+        }, 100);
+      }
+      return;
+    }
+    // Force page transition animation even if staying on same page
+    if (location.pathname === path) {
+      // Trigger a re-render to show transition
+      window.dispatchEvent(new CustomEvent('pageTransition'));
+      setTimeout(() => {
+        if (sectionId) {
+          const el = document.getElementById(sectionId);
+          if (el) {
+            setActiveSection(sectionId);
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }, 350);
+    } else {
+      navigate(path);
+    }
+  }, [location.pathname, navigate]);
+
+  const handleSubmenuClick = useCallback((path: string) => {
+    console.log('handleSubmenuClick:', { path, currentPath: location.pathname });
+    if (path === "/") {
+      // Resumen - navigate to home and scroll to propiedades section
+      if (location.pathname === "/") {
+        const el = document.getElementById("propiedades");
+        if (el) {
+          isScrollingRef.current = true;
+          setActiveSection("propiedades");
+          el.scrollIntoView({ behavior: "smooth" });
+          setTimeout(() => {
+            isScrollingRef.current = false;
+          }, 1000);
+        }
+      } else {
+        navigate("/");
+        setTimeout(() => {
+          const el = document.getElementById("propiedades");
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    } else if (path === "/") {
+      // Destacadas - scroll to position first, then show animation
+      console.log('Destacadas clicked from submenu - scrolling to position');
+      const el = document.getElementById("propiedades");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          isScrollingRef.current = true;
+          setActiveSection("propiedades");
+          window.dispatchEvent(new CustomEvent('pageTransition'));
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+              isScrollingRef.current = false;
+            }, 1000);
+          }, 100);
+        }, 100);
+      }
+    } else {
+      // Ver Todas - navigate to properties page
+      if (location.pathname === path) {
+        // Force transition animation when already on properties page
+        window.dispatchEvent(new CustomEvent('pageTransition'));
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 350);
+      } else {
+        navigate(path);
       }
     }
-    navigate(path);
-  }, [location.pathname, navigate]);
+    setDropdownOpen(null);
+  }, [navigate, location.pathname]);
+
+  const toggleDropdown = useCallback((itemName: string) => {
+    setDropdownOpen(dropdownOpen === itemName ? null : itemName);
+  }, [dropdownOpen]);
 
   const handleLogoClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -139,20 +236,47 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {siteConfig.navigation.main.map((item) => (
-              <button
-                key={item.path}
-                onClick={() => handleNavClick(item.path)}
-                className={`relative text-sm font-medium transition-colors hover:text-[#8B5CF6] cursor-pointer bg-transparent border-0 p-0 ${
-                  isActive(item.path)
-                    ? "text-[#8B5CF6]"
-                    : "text-[#CBD5E1]"
-                }`}
-              >
-                {item.name}
-                {isActive(item.path) && (
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6]" />
+              <div key={item.path} className="relative" ref={item.name === "Propiedades" ? dropdownRef : undefined}>
+                <button
+                  onClick={() => {
+                    if (item.submenu) {
+                      toggleDropdown(item.name);
+                    } else {
+                      handleNavClick(item.path);
+                    }
+                  }}
+                  className={`relative text-sm font-medium transition-colors hover:text-[#8B5CF6] cursor-pointer bg-transparent border-0 p-0 flex items-center gap-1 ${
+                    isActive(item.path)
+                      ? "text-[#8B5CF6]"
+                      : "text-[#CBD5E1]"
+                  }`}
+                >
+                  {item.name}
+                  {item.submenu && (
+                    <ChevronDown className={`w-4 h-4 transition-transform ${
+                      dropdownOpen === item.name ? "rotate-180" : ""
+                    }`} />
+                  )}
+                  {isActive(item.path) && (
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6]" />
+                  )}
+                </button>
+                
+                {/* Dropdown Menu */}
+                {item.submenu && dropdownOpen === item.name && (
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-[#1E293B] border border-[#334155] rounded-lg shadow-xl z-50">
+                    {item.submenu.map((subItem) => (
+                      <button
+                        key={subItem.path}
+                        onClick={() => handleSubmenuClick(subItem.path)}
+                        className="w-full text-left px-4 py-3 text-sm text-[#CBD5E1] hover:text-[#8B5CF6] hover:bg-[#334155] transition-colors first:rounded-t-lg last:rounded-b-lg cursor-pointer"
+                      >
+                        {subItem.name}
+                      </button>
+                    ))}
+                  </div>
                 )}
-              </button>
+              </div>
             ))}
           </div>
 
@@ -160,7 +284,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <Button
               onClick={handleWhatsAppClick}
-              className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white px-6 py-2 rounded-lg font-medium transition-all shadow-lg shadow-[#8B5CF6]/20 hover:shadow-[#8B5CF6]/40"
+              className="bg-[#25D366] hover:bg-[#20BA5A] text-white px-6 py-2 rounded-lg font-medium transition-all shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40"
             >
               <MessageCircle className="mr-2 w-4 h-4" />
               Contactar Ahora
@@ -186,21 +310,49 @@ export default function Navbar() {
         <div className="md:hidden bg-[#0F172A] border-t border-[#1E293B]">
           <div className="px-4 py-6 space-y-4">
             {siteConfig.navigation.main.map((item) => (
-              <button
-                key={item.path}
-                onClick={() => { handleNavClick(item.path); setIsMobileMenuOpen(false); }}
-                className={`block w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer bg-transparent border-0 ${
-                  isActive(item.path)
-                    ? "bg-gradient-to-r from-[#8B5CF6]/10 to-[#3B82F6]/10 text-[#8B5CF6]"
-                    : "text-[#CBD5E1] hover:bg-[#1E293B]"
-                }`}
-              >
-                {item.name}
-              </button>
+              <div key={item.path}>
+                <button
+                  onClick={() => { 
+                    if (item.submenu) {
+                      toggleDropdown(item.name);
+                    } else {
+                      handleNavClick(item.path); 
+                      setIsMobileMenuOpen(false); 
+                    }
+                  }}
+                  className={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer bg-transparent border-0 flex items-center justify-between ${
+                    isActive(item.path)
+                      ? "bg-gradient-to-r from-[#8B5CF6]/10 to-[#3B82F6]/10 text-[#8B5CF6]"
+                      : "text-[#CBD5E1] hover:bg-[#1E293B]"
+                  }`}
+                >
+                  {item.name}
+                  {item.submenu && (
+                    <ChevronDown className={`w-4 h-4 transition-transform ${
+                      dropdownOpen === item.name ? "rotate-180" : ""
+                    }`} />
+                  )}
+                </button>
+                
+                {/* Mobile Submenu */}
+                {item.submenu && dropdownOpen === item.name && (
+                  <div className="ml-4 mt-2 space-y-2">
+                    {item.submenu.map((subItem) => (
+                      <button
+                        key={subItem.path}
+                        onClick={() => { handleSubmenuClick(subItem.path); setIsMobileMenuOpen(false); }}
+                        className="w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer bg-transparent border-0 text-[#94A3B8] hover:bg-[#1E293B] hover:text-[#8B5CF6]"
+                      >
+                        {subItem.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
             <Button
               onClick={handleWhatsAppClick}
-              className="w-full bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white px-6 py-3 rounded-lg font-medium"
+              className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white px-6 py-3 rounded-lg font-medium shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40"
             >
               <MessageCircle className="mr-2 w-4 h-4" />
               Contactar Ahora
