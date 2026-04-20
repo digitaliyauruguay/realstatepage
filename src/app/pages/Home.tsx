@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
-import { Search, ArrowRight, Star, MessageCircle, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Search, ArrowRight, Star, MessageCircle, Mail, Phone, MapPin, Clock, Users, Target, Sparkles, Handshake } from "lucide-react";
 import { siteConfig } from "../../config/siteConfig";
 import { mockProperties } from "../../data/mockProperties";
 import PropertyCard from "../components/properties/PropertyCard";
@@ -265,17 +265,38 @@ export default function Home() {
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="space-y-4">
-            {siteConfig.faqs.map((faq, index) => (
+          <Accordion type="single" collapsible className="space-y-4 max-w-4xl mx-auto">
+            {[
+              {
+                question: "¿Cómo empiezo el proceso de compra o venta?",
+                answer: "Es muy sencillo. Contactanos a través de nuestro formulario, WhatsApp o teléfono y un agente especializado se comunicará contigo en menos de 24 horas para entender tus necesidades y comenzar el proceso."
+              },
+              {
+                question: "¿Qué tipos de propiedades manejan?",
+                answer: "Trabajamos con todo tipo de propiedades residenciales y comerciales: departamentos, casas, terrenos, oficinas, locales comerciales y propiedades de lujo en todo Uruguay."
+              },
+              {
+                question: "¿Cuánto tiempo toma vender una propiedad?",
+                answer: "El tiempo varía según el tipo de propiedad, ubicación y precio del mercado. En promedio, nuestras propiedades se venden entre 30-90 días, aunque algunas propiedades muy demandadas pueden venderse en menos de una semana."
+              },
+              {
+                question: "¿Ofrecen servicios de financiamiento?",
+                answer: "Sí, contamos con alianzas con los principales bancos y entidades financieras de Uruguay para ayudarte a obtener la mejor tasa de interés y condiciones para tu hipoteca."
+              },
+              {
+                question: "¿Cuáles son sus comisiones?",
+                answer: "Nuestras comisiones son competitivas y se ajustan según el tipo de servicio y valor de la propiedad. Durante nuestra primera reunión te explicaremos detalladamente nuestra estructura de comisiones sin compromiso."
+              }
+            ].map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-[#1E293B] border border-[#334155] rounded-xl px-6 data-[state=open]:border-[#8B5CF6]/50"
+                className="bg-[#1E293B] border border-[#334155] rounded-xl overflow-hidden data-[state=open]:border-[#8B5CF6]/50"
               >
-                <AccordionTrigger className="text-left text-[#F8FAFC] hover:text-[#8B5CF6] hover:no-underline py-6">
+                <AccordionTrigger className="text-left text-[#F8FAFC] hover:text-[#8B5CF6] hover:no-underline py-6 px-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-[#94A3B8] pb-6">
+                <AccordionContent className="text-[#94A3B8] px-6 pb-6 pt-0">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -285,13 +306,13 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-24 bg-[#020617] scroll-mt-20">
+      <section id="contacto" className="py-20 bg-[#0F172A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#F8FAFC] to-[#CBD5E1] bg-clip-text text-transparent">
               Contacto
             </h2>
-            <p className="text-[#94A3B8] text-lg max-w-2xl mx-auto">
+            <p className="text-[#94A3B8] text-lg">
               Contactanos hoy y dejá que nuestros expertos te guíen hacia tu hogar perfecto
             </p>
           </div>

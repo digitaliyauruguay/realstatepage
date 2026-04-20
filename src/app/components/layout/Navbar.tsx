@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Menu, X, MessageCircle, ChevronDown } from "lucide-react";
+import { Menu, X, MessageCircle, ChevronDown, Settings } from "lucide-react";
 import { siteConfig } from "../../../config/siteConfig";
 import { Button } from "../ui/button";
 
@@ -360,6 +360,17 @@ export default function Navbar() {
           </div>
         </div>
       )}
+      
+      {/* Admin Access Link */}
+      <div className="fixed bottom-4 right-4 z-40">
+        <button
+          onClick={() => window.location.href = '/admin'}
+          className="bg-[#1E293B] border border-[#334155] hover:border-[#8B5CF6]/50 rounded-lg p-2 text-[#94A3B8] hover:text-[#8B5CF6] transition-all group"
+          title="Acceso Administrativo"
+        >
+          <Settings className="w-4 h-4" />
+        </button>
+      </div>
     </nav>
   );
 }

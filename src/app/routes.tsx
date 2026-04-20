@@ -5,6 +5,7 @@ import Properties from "./pages/Properties";
 import PropertyDetail from "./pages/PropertyDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 export const router = createBrowserRouter([
@@ -15,8 +16,9 @@ export const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "properties", Component: Properties },
       { path: "property/:id", Component: PropertyDetail },
-      { path: "about", Component: About },
-      { path: "contact", Component: Contact },
+      { path: "about", Component: Home },
+      { path: "contact", Component: Home },
+      { path: "admin", Component: AdminDashboard },
       { path: "testimonials", Component: Home },
       { path: "faq", Component: Home },
       { path: "*", Component: NotFound },
