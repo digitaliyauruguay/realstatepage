@@ -214,8 +214,8 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#0F172A]/95 backdrop-blur-lg border-b border-[#1E293B]"
-          : "bg-transparent"
+          ? "bg-[#0F172A] border-b border-[#1E293B]"
+          : "bg-[#0F172A]"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -299,7 +299,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-3 rounded-lg hover:bg-[#1E293B] transition-colors cursor-pointer text-white"
+            className="md:hidden p-3 rounded-lg bg-[#1E293B] hover:bg-[#334155] transition-colors cursor-pointer text-white border border-[#334155]"
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
