@@ -67,6 +67,9 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           src={property.images[0]}
           alt={property.title}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          onError={(e) => {
+            e.currentTarget.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80";
+          }}
         />
         
         {/* Media Indicators */}

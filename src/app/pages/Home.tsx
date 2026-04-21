@@ -156,27 +156,28 @@ export default function Home() {
       {/* Featured Properties */}
       <section id="propiedades" className="py-24 bg-[#020617] scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#F8FAFC] to-[#CBD5E1] bg-clip-text text-transparent">
-                Propiedades Destacadas
-              </h2>
-              <p className="text-[#94A3B8] text-lg">
-                Bosque Día, propiedades destacadas
-              </p>
-            </div>
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#F8FAFC] to-[#CBD5E1] bg-clip-text text-transparent">
+              Propiedades Destacadas
+            </h2>
+            <p className="text-[#94A3B8] text-lg mb-8">
+              Bosque Día, propiedades destacadas
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {featuredProperties.map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))}
+          </div>
+
+          <div className="text-center">
             <Link to="/properties">
-              <Button className="bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white px-8 py-3 text-lg">
+              <Button className="w-full max-w-md bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] text-white px-8 py-4 text-lg">
                 Ver Todas las Propiedades
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProperties.map((property) => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
           </div>
         </div>
       </section>
