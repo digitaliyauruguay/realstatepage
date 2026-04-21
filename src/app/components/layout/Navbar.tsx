@@ -362,27 +362,18 @@ export default function Navbar() {
               <MessageCircle className="mr-2 w-4 h-4" />
               Contactar Ahora
             </Button>
-            
-            {/* Admin Access Button - Mobile */}
-            <button
-              onClick={() => window.location.href = '/admin'}
-              className="w-full bg-[#1E293B] border border-[#334155] hover:border-[#8B5CF6]/50 rounded-lg px-4 py-3 text-[#94A3B8] hover:text-[#8B5CF6] transition-all flex items-center justify-center gap-2"
-            >
-              <Settings className="w-4 h-4" />
-              Acceso Administrativo
-            </button>
           </div>
         </div>
       )}
       
       {/* Admin Access Link */}
-      <div className="fixed bottom-4 right-4 z-40 md:block hidden">
+      <div className="fixed bottom-4 right-4 z-40">
         <button
-          onClick={() => navigate('/admin')}
-          className="bg-[#1E293B] border border-[#334155] hover:border-[#8B5CF6]/50 rounded-lg p-2 text-[#94A3B8] hover:text-[#8B5CF6] transition-all group"
+          onClick={() => window.location.href = '/admin'}
+          className="bg-[#1E293B] border border-[#334155] hover:border-[#8B5CF6]/50 rounded-lg p-3 text-[#94A3B8] hover:text-[#8B5CF6] transition-all group shadow-lg"
           title="Acceso Administrativo"
         >
-          <Settings className="w-4 h-4" />
+          <Settings className="w-5 h-5" />
         </button>
       </div>
     </nav>
