@@ -367,7 +367,7 @@ export default function Navbar() {
       )}
       
       {/* Admin Access Link */}
-      <div className="fixed bottom-4 right-4 z-40">
+      <div className="fixed bottom-20 right-4 z-40">
         <button
           onClick={() => window.location.href = '/admin'}
           className="bg-[#1E293B] border border-[#334155] hover:border-[#8B5CF6]/50 rounded-lg p-3 text-[#94A3B8] hover:text-[#8B5CF6] transition-all group shadow-lg"
