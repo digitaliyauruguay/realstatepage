@@ -35,7 +35,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Checkbox } from "../components/ui/checkbox";
 import { siteConfig } from "../../config/siteConfig";
 import { mockProperties } from "../../data/mockProperties";
-import CRMSystem from "../components/crm/CRMSystem";
+// import CRMSystem from "../components/crm/CRMSystem";
 
 interface AdminUser {
   id: string;
@@ -802,7 +802,8 @@ export default function AdminDashboard() {
       case "agents":
         return renderAgents();
       case "crm":
-        return <CRMSystem />;
+        // return <CRMSystem />;
+        return <div className="text-center py-12 text-[#94A3B8]">CRM System en mantenimiento</div>;
       case "analytics":
         return renderAnalytics();
       case "settings":
